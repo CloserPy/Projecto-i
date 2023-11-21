@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturar</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/png" href="../icons/Logo.png">
+    <style>
+        body {
+            background-image: url('../icons/background.jpg');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+        }
+        .navbar-nav .nav-item .nav-link {
+        color: #FFFFFF; 
+    }
+    </style>
+</head>
+
+<body>
+    <!--Navbar-->
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+            <div class="container">
+                <img src="../icons/logo2.png" alt="" style="height: 60px; width: 65px; margin-left: 40px; margin-right: 40px;" class="d-inline-block align-text-top">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="menu.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="arriendos.html">Arrendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="clientes.html">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="facturarArriendos.html">Facturar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="mantenciones.html">Mantenciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="devolucion.html">Devoluciones</a>
+                        </li>
+                    
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <!--Navbar-->
+    <header class="text-white text-center mt-3"> 
+        <h1>Facturar Arriendos</h1>
+    </header>
+       
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-9 col-12 mt-3">
+                <!-- Fila para el input y el botón -->
+                <div class="row mb-3">
+                    <div class="col-lg-4 col-4">
+                        <select id="filtroRut" class="form-control"></select>
+                    </div>
+                    <div class="col-lg-4 col-4">
+                        <button class="btn btn-success" id="btnBuscar" >Buscar</button>
+                    </div>
+                </div>
+    
+                <!-- Tabla -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th>Id</th>
+                                <th>N° Serie</th>
+                                <th>Cliente</th>
+                                <th>Inicio</th>
+                                <th>Termino</th>
+                                <th>Duración</th>
+                                <th>Valor</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cargar_arriendos"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-3 col-12 mt-3">
+                <br><br>
+                <form action="" class="form-control text-center">
+                    <h2>Detalle Factura</h2>
+                    <label for="Bruto">Valor Bruto</label>
+                    <input type="number" name="" id="Bruto" class="form-control text-center" disabled>
+                    <label for="Descuento">Descuento</label>
+                    <input type="number" id="Descuento" class="form-control text-center">
+                    <label for="Neto">Valor Neto</label>
+                    <input type="number" id="Neto" class="form-control text-center" disabled>
+                    <label for="Iva">Iva</label>
+                    <input type="text" id="Iva" class="form-control text-center" value="19%" disabled>
+                    <label for="Total">Total</label>
+                    <input type="number" id="Total" class="form-control text-center" disabled>
+                    <label for="Emision">Fecha Emisión</label>
+                    <input type="date" id="Emision" class="form-control text-center" disabled >
+                    <label for="Expiracion">Fecha Expiracion</label>
+                    <input type="date" id="Expiracion" class="form-control text-center" disabled >
+                    <button class="btn btn-success mt-2" id="btnGuardar"disabled>Facturar</button>
+                    <br><br>
+                    <a href="https://www.sii.cl/servicios_online/1039-1183.html" target="_blank" class="btn btn-primary">Facturar SSI</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="../assets/js/sweetalert2@11.js"></script>
+    <script type="module" src="../functions/facturarArriendos.js"></script>
+    <script src="../functions/fecha.js"></script>
+    
+</body>
+
+</html>
+

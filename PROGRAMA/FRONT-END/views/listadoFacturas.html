@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturas</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/png" href="../icons/Logo.png">
+    <style>
+        body {
+            background-image: url('../icons/background.jpg');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+        }
+        .navbar-nav .nav-item .nav-link {
+        color: #FFFFFF; 
+    }
+    </style>
+</head>
+
+<body>
+    <!--Navbar-->
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+            <div class="container">
+                <img src="../icons/logo2.png" alt="" style="height: 60px; width: 65px; margin-left: 40px; margin-right: 40px;" class="d-inline-block align-text-top">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="menu.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="arriendos.html">Arrendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="clientes.html">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="facturarArriendos.html">Facturar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="mantenciones.html">Mantenciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="devolucion.html">Devoluciones</a>
+                        </li>
+                    
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <header class="text-white text-center mt-3"> 
+        <h1>Gestión de Facturas</h1>
+    </header>
+    <!--Navbar-->
+    
+    <div class="container">
+        <div class="table-responsive ">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th>Id</th>
+                        <th>Bruto</th>
+                        <th>Descuento</th>
+                        <th>Neto</th>
+                        <th>Iva</th>
+                        <th>Total</th>
+                        <th>Emisión</th>
+                        <th>Expiracion</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cargar_Factura"></tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script src="../assets/js/sweetalert2@11.js"></script>
+    <script type="module" src="../functions/listadoFacturas.js"></script>
+</body>
+
+</html>

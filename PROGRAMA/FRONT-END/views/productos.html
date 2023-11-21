@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/png" href="../icons/Logo.png">
+    <style>
+        body {
+            background-image: url('../icons/background.jpg');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+        }
+        .navbar-nav .nav-item .nav-link {
+        color: #FFFFFF; 
+    }
+    </style>
+</head>
+
+<body>
+    <!--Navbar-->
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+            <div class="container">
+                <img src="../icons/logo2.png" alt="" style="height: 60px; width: 65px; margin-left: 40px; margin-right: 40px;" class="d-inline-block align-text-top">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="menu.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="arriendos.html">Arrendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="clientes.html">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="facturarArriendos.html">Facturar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="mantenciones.html">Mantenciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="devolucion.html">Devoluciones</a>
+                        </li>
+                    
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <header class="text-white text-center mt-3"> 
+        <h1>Gestión de Productos</h1>
+    </header>
+    <!--Navbar-->
+    
+    <div class="container">
+        <div class="mb-3 text-end">
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-control" id="EstadoFiltro"></select>
+                </div>
+                <div class="col-md-1">
+                    <button class=" btn btn-primary form-control" id="btnFiltrar" onclick="filtro_rut()">Filtrar</button>
+                </div>
+                <div class="col-md-1">
+                    <button class=" btn btn-secondary form-control" id="btnRestaurar" onclick="restablecerTabla()">General</button>
+                </div>
+                <div class="col-md-4">
+                    <input type="hidden">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#cargar_modal">
+                        Registrar Producto
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive ">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th>N° Serie</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
+                        <th>Costo</th>
+                        <th>Adquisición</th>
+                        <th>Vida Util</th>
+                        <th>Valor Residual</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cargar_producto"></tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="cargar_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalTitle">Productos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" id="Estado" disabled>
+                        <label for="Num_Serie">Numero Serie</label>
+                        <input type="number" id="Num_Serie" class="form-control" maxlength="">
+                        <label for="Nombre">Nombre</label>
+                        <input type="text" id="Nombre" class="form-control" maxlength="50">
+                        <label for="Tipo">Tipo</label>
+                        <select name="Select_Tipo" id="Tipo" class="form-control">  
+                        </select>
+                        <label for="Valor_Adq">Valor Adquisicion</label>
+                        <input type="number" id="Valor_Adq" class="form-control">
+                        <label for="Fecha_Adq">Fecha Adquisicion</label>
+                        <input type="date" id="Fecha_Adq" class="form-control">
+                        <label for="Vida_Util">Vida Util</label>
+                        <input type="number" id="Vida_Util" class="form-control" maxlength="">
+                        <label for="Valor_Residual">Valor Residual</label>
+                        <input type="number" id="Valor_Residual" class="form-control" maxlength="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="Cerrar" class="btn btn-danger" data-bs-dismiss="modal" onclick="limpiar()">Cerrar</button>
+                    <button type="button" id="btnSave" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/sweetalert2@11.js"></script>
+    <script type="module" src="../functions/productos.js"></script>
+</body>
+
+</html>

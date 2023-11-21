@@ -1,0 +1,283 @@
+const cargar_arriendos = () => {
+    fetch('https://localhost:44358/api/Arriendo/Activo')
+        .then(response => response.json())
+        .then(datos => {
+            if (datos.success) {
+                let tabla = '';
+                datos.data.forEach(x => {                  
+                    tabla += `
+                    <tr class="text-center">
+                        <td>${x.id}</td>
+                        <td>${x.idProducto}</td>
+                        <td>${x.idCliente}</td>
+                        <td>${x.inicio}</td>
+                        <td>${x.termino}</td>
+                        <td>${x.duracion} Días</td>
+                        <td>${x.valor}</td>
+                        <td>${x.estado}</td>
+                        <td nowrap>
+                        <input type="checkbox" id="checkbox-${x.id}" name="myCheckbox" data-duracion="${x.duracion}" data-valor="${x.valor}">
+                        </td>
+                    </tr>
+                    `;
+                });
+                document.getElementById('cargar_arriendos').innerHTML = tabla;
+            }
+        })
+        .catch(error => {
+            console.error('Error al cargar los datos:', error);
+        });
+};
+
+const cargar_cliente = () =>{
+    fetch('https://localhost:44358/api/Cliente')
+        .then(response => response.json())
+        .then(datos => {
+            if (datos.success) {
+                console.log(datos.data)
+                let select = '<option selected disabled value="">Seleccione Cliente</option>'
+                datos.data.forEach(x => {
+                    select += `
+                        <option value="${x.rut}">${x.rut} (${x.nombre})</option>
+                   ` })
+                document.getElementById('filtroRut').innerHTML = select
+            }
+        })
+}
+
+function actualizarCalculos() {
+    let valorBrutoTotal = 0;
+    let checkboxesSeleccionados = document.querySelectorAll('input[name="myCheckbox"]:checked');
+
+    checkboxesSeleccionados.forEach(checkbox => {
+        const duracion = parseInt(checkbox.dataset.duracion);
+        const valor = parseInt(checkbox.dataset.valor);
+        valorBrutoTotal += duracion * valor;
+    });
+
+    document.getElementById('Bruto').value = valorBrutoTotal;
+
+    // Calcular otros valores
+    const descuentoInput = document.getElementById('Descuento').value;
+    const descuento = descuentoInput ? parseFloat(descuentoInput) / 100 : 0;
+    const valorNeto = Math.round((valorBrutoTotal * (1 - descuento)),1);
+    document.getElementById('Neto').value = valorNeto;
+
+    const total = Math.round(valorNeto * (1 + 0.19),1)
+    document.getElementById('Total').value = total;
+    document.getElementById('btnGuardar').disabled = false;
+}
+
+document.addEventListener('change', function(e) {
+    if (e.target && e.target.name == 'myCheckbox') {
+        actualizarCalculos();
+    }
+});
+
+document.getElementById('Descuento').addEventListener('input', actualizarCalculos);
+
+document.getElementById('btnBuscar').addEventListener('click', () => {
+    const filtroRut = document.getElementById('filtroRut').value.trim().toUpperCase();
+    const filas = document.getElementById('cargar_arriendos').getElementsByTagName('tr');
+    filtrarPorPK(filtroRut, filas, 2); 
+    
+});
+
+function filtrarPorPK(filtroRut, filas, posicion) {
+    for (let i = 0; i < filas.length; i++) {
+        const fila = filas[i];
+        const celdaRut = fila.getElementsByTagName("td")[posicion];
+
+        if (celdaRut) {
+            const rut = celdaRut.textContent.trim().toUpperCase();
+
+            if (rut.includes(filtroRut)) {
+                fila.style.display = ""; 
+            } else {
+                fila.style.display = "none"; 
+            }
+        }
+    }
+}
+function actualizarArriendos(idsArriendos) {
+    idsArriendos.forEach(id => {
+        fetch(`https://localhost:44358/api/Arriendo/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ Id: id, IdEstado: 2 }) // Asegúrate de incluir todos los campos requeridos por tu API
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Arriendo actualizado:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+}
+
+document.getElementById('btnGuardar').addEventListener('click', () => {
+    let factura = {
+        bruto: document.getElementById('Bruto').value.trim(),
+        descuento: document.getElementById('Descuento').value.trim(),
+        neto: document.getElementById('Neto').value.trim(),
+        iva: 19,
+        total: document.getElementById('Total').value.trim(),
+        fechaEmision: document.getElementById('Emision').value.trim(),
+        fechaExpiracion: document.getElementById('Expiracion').value.trim()
+    }
+    if(factura.descuento == ''){factura.descuento = 0}
+    //GUARDAR FACTURA
+    fetch('https://localhost:44358/api/Factura', {
+        method: 'Post',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(factura)
+    }).then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                Swal.fire(result.message, '', 'success')
+                cargar_arriendos()
+            }
+            else {
+                Swal.fire(result.message, 'ERROR', 'warning')
+            }
+        })
+
+    //let arriendosSeleccionados = document.querySelectorAll('input[name="myCheckbox"]:checked');
+    //let idsArriendos = Array.from(arriendosSeleccionados).map(checkbox => parseInt(checkbox.id.replace('checkbox-', '')));
+    //actualizarArriendos(idsArriendos);
+
+})
+
+
+//funcion para calcular la factura
+//cargar_arriendos()
+
+cargar_cliente()
+cargar_arriendos()
+
+
+
+
+
+function actualizarArriendos(idFactura) {
+
+    let checkboxesSeleccionados = document.querySelectorAll('input[name="myCheckbox"]:checked');
+    checkboxesSeleccionados.forEach(checkbox => {
+        
+        let idArriendo = parseInt(checkbox.dataset.id, 10);
+        let arriendoActualizado = {
+            
+            idFactura: idFactura,
+            idEstado: 2
+        };
+        alert( typeof idArriendo)
+        fetch(`https://localhost:44358/api/Arriendo/${idArriendo}`)
+        .then(respose => respose.json())
+        .then(result => {
+            if (result.success) {
+                let arr = {
+                    id: result.data.id,
+                    idProducto: result.data.idProducto,
+                    idCliente: result.data.idCliente,
+                    inicio: result.data.inicio,
+                    termino: result.data.termino,
+                    valor: result.data.valor,
+                    idFactura: arriendoActualizado.idFactura,
+                    idEstado: arriendoActualizado.idEstado
+                }
+                alert('fetch')
+                fetch(`https://localhost:44358/api/Arriendo/${idArriendo}`, {
+                    method: 'Put',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(arr)
+                }).then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            Swal.fire(result.message, '', 'success')
+                            alert('Se actualizó el arriendo')
+                        }
+                        else {
+                            Swal.fire(result.message, 'ERROR', 'warning')
+                        }
+                    })
+                
+            }
+        })
+        
+    });
+}
+
+
+
+
+function actualizarArriendos(idFactura) {
+    function putPost(idArriendo,idFactura){
+        fetch(`https://localhost:44358/api/Arriendo/${idArriendo}`)
+        .then(respose => respose.json())
+        .then(result => {
+            if (result.success) {
+                let arr = {
+                    id: result.data.id,
+                    idProducto: result.data.idProducto,
+                    idCliente: result.data.idCliente,
+                    inicio: result.data.inicio,
+                    termino: result.data.termino,
+                    valor: result.data.valor,
+                    idFactura: idFactura,
+                    idEstado: 2
+                }
+                fetch(`https://localhost:44358/api/Arriendo/${idArriendo}`, {
+                    method: 'Put',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(arr)
+                }).then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            fetch(`https://localhost:44358/api/Producto/${arr.idProducto}`)
+                                .then(response => response.json())
+                                .then(result => {
+                                if (result.success) {
+                                    let prod = {
+                                        numSerie: arr.idProducto,
+                                        nombre: result.data.nombre,
+                                        idTipo: result.data.idTipo,
+                                        valor: result.data.valor,
+                                        fechaAdq: result.data.fechaAdq,
+                                        vidaUtil: result.data.vidaUtil,
+                                        valorResidual: result.data.valorResidual,
+                                        idEstado: 1
+                                    }
+                                    fetch(`https://localhost:44358/api/Producto/${arr.idProducto}`,{
+                                        method: 'Put',
+                                        headers: {
+                                            'Content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify(prod)
+                                    }).then(response => response.json())
+                                    .then(result =>{
+                                        if(result.success){
+                                        }
+                                    })
+                                }
+                                else {
+                                Swal.fire(result.message, 'ERROR', 'warning')
+                                }
+                            })
+                        }
+                        else {
+                            Swal.fire(result.message, 'ERROR', 'warning')
+                        }
+                    })
+                
+            }
+        })
+    }

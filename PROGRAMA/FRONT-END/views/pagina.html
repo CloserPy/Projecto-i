@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basa Spa</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/png" href="../icons/Logo.png">
+    <style>
+        body {
+            
+            background-size: cover; 
+            background-repeat: no-repeat; 
+        }
+        .navbar { background-color: black; }
+        .navbar-nav .nav-item .nav-link { color: #FFFFFF; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../icons/logo2.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Basa Spa
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <!-- Agrega más elementos al navbar según sea necesario -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../icons/maquinaria1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../icons/maquinaria2.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../icons/maquinaria3.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <!-- Imagen a la izquierda -->
+            <div class="col-md-6">
+                <img src="../icons/bienvenidobasa.jpg" class="img-fluid" alt="Imagen de Bienvenida">
+            </div>
+            <!-- Texto de Bienvenida y Descripción a la derecha -->
+            <div class="col-md-6">
+                <h2>Bienvenido a BASA SPA</h2>
+                <p>Aquí va una descripción detallada de lo que ofrece BASA SPA. Puede incluir información sobre servicios, historia, filosofía de la empresa, etc. Este texto debe ser informativo y acogedor para los visitantes del sitio.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5 service-container">
+        <h2>Nuestros Servicios</h2>
+        <div class="row">
+            <!-- Fila 1 -->
+            <div class="col-md-4 service-image">
+                <img src="../icons/retro.jpg" class="image-square" alt="Servicio 1">
+                <div class="centered-text">RetroExcabadoras</div>
+            </div>
+            <div class="col-md-4 service-image">
+                <img src="../icons/mescladora.png" class="image-square" alt="Servicio 2">
+                <div class="centered-text">Mezcladora</div>
+            </div>
+            <div class="col-md-4 service-image">
+                <img src="../icons/compactadora.png" class="image-square" alt="Servicio 3">
+                <div class="centered-text">Compactadora</div>
+            </div>
+            <!-- Fila 2 -->
+            <div class="col-md-4 service-image">
+                <img src="../icons/taladrocemento.jpg" class="image-square" alt="Servicio 4">
+                <div class="centered-text">Taladro</div>
+            </div>
+            <div class="col-md-4 service-image">
+                <img src="../icons/aplanadora.jpeg" class="image-square" alt="Servicio 5">
+                <div class="centered-text">Aplanadora</div>
+            </div>
+            <div class="col-md-4 service-image">
+                <img src="../icons/motovolquete.png"" class="image-square" alt="Servicio 6">
+                <div class="centered-text">Motovolquete</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de 'Nuestros clientes nos respaldan' -->
+    <div class="container my-5">
+        <h2>Nuestros clientes nos respaldan</h2>
+        <div id="logoCarousel" class="carousel slide logo-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Primer Carousel Item con 3 logos -->
+                <div class="carousel-item active">
+                    <div class="d-flex justify-content-center">
+                        <img src="../icons/cmpc.jpg" class="d-inline mx-3" alt="Logo 1">
+                        <img src="../icons/uconce.jpg" class="d-inline mx-3" alt="Logo 2">
+                        <img src="../icons/hospital.jpg" class="d-inline mx-3" alt="Logo 3">
+                    </div>
+                </div>
+    
+                <!-- Segundo Carousel Item con 3 logos -->
+                <div class="carousel-item">
+                    <div class="d-flex justify-content-center">
+                        <img src="../icons/entrecot2.png" class="d-inline mx-3" alt="Logo 4">
+                        <img src="../icons/yumbel.jpg" class="d-inline mx-3" alt="Logo 5">
+                        <img src="../icons/polpaico2.jpg" class="d-inline mx-3" alt="Logo 6">
+                    </div>
+                </div>
+                <!-- Más carousel-item según sea necesario -->
+            </div>
+            
+            <!-- Controles del Carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#logoCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#logoCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </div>
+<!-- Fin del Contenedor de 'Nuestros clientes nos respaldan' -->
+
+
+    <!-- El resto de tu contenido de página va aquí -->
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<footer>
+    <div class="container">
+        <div class="row footer-content">
+            <!-- Información de contacto en la mitad izquierda -->
+            <div class="col-md-6">
+                <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3182.158865002746!2d-72.55904092323473!3d-37.10133569366036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96697185f4152e53%3A0xad5c91f88e2a8f14!2sArmada%20de%20Chile%20285%2C%20Yumbel%2C%20B%C3%ADo%20B%C3%ADo!5e0!3m2!1ses-419!2scl!4v1700535919818!5m2!1ses-419!2scl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+                    width="50%" 
+                    height="200" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <!-- Mapa en la mitad derecha -->
+            <div class="col-md-6">
+               
+                <div class="col-md-6 "">
+                    <h5>Contacto</h5>
+                    <p><strong>Número Contacto:</strong> +56 9 5972 4623</p>
+                    <p><strong>Correo:</strong> contacto@basaspa.com</p>
+                    <p><strong>Horario:</strong> Lunes a Viernes - 9am a 6pm</p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</footer>
+<style>
+    /* ... tus otros estilos ... */
+
+    footer {
+        background-color: #343a40; /* Color de fondo del footer */
+        color: white; /* Color del texto */
+        padding: 20px 0; /* Relleno arriba y abajo del footer */
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .contact-info {
+        margin-left: 20px;
+    }
+
+    .empty-space {
+        margin-right: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .contact-info, .empty-space {
+            margin: 10px 0;
+        }
+    }
+
+    .logo-margin {
+        margin: 0 15px; /* Ajusta el valor de 15px según sea necesario */
+    }
+
+    .service-container {
+        max-width: 960px; /* Establece un ancho máximo para el contenedor */
+        margin: auto; /* Centra el contenedor */
+    }
+
+    .service-image {
+        position: relative;
+        text-align: center;
+        color: white;
+        margin-bottom: 15px; /* Espaciado entre imágenes */
+    }
+
+    .centered-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px; /* Ajusta el tamaño del texto según sea necesario */
+    }
+
+    .image-square {
+        width: 100%;
+        height: 200px; /* Ajusta la altura según sea necesario */
+        object-fit: cover;
+        background-color: #ffffff; /* Fondo por defecto en caso de no haber imagen */
+    }
+
+    .logo-carousel img {
+        height: 100px; /* Ajusta la altura del logo según sea necesario */
+        opacity: 0.5; /* Opacidad para logos no activos */
+        transition: opacity .3s ease-in-out;
+    }
+
+    .logo-carousel .carousel-item.active img {
+        opacity: 1;
+        color: black; /* Opacidad completa para el logo activo */
+    }
+</style>

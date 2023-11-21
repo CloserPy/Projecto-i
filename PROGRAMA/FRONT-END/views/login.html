@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/png" href="../icons/Logo.png">
+    <style>
+        body {
+            background-image: url('../icons/background.jpg');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+        }
+        .navbar-nav .nav-item .nav-link {
+            color: #FFFFFF; 
+        }
+        .welcome-message {
+            color: #FFFFFF; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="container text-center mt-5">
+        <img src="../icons/Logo.png" alt="User Icon" style="width: 100px;">
+    </div>
+    
+    <div class="container text-center mt-5 welcome-message">
+    </div>
+
+    <div class="container col-md-4 mt-5">
+     
+        <form action="" class="form-control" id="loginForm" style="text-align: center;">
+            <h2>BIENVENIDO A BASA SPA</h2>
+            <p>POR FAVOR INGRESE SUS CREDENCIALES</p>
+            <div class="container mt-3">
+                <label for="user">Usuario</label>
+                <input type="text" class="form-control" id="user" required>
+            </div>
+            <div class="container mt-3">
+                <label for="pass">Contraseña</label>
+                <input type="password" class="form-control" id="pass" required>
+            </div>
+            <div class="container mt-4 mb-4">
+                <input type="submit" class="form-control btn btn-success" id="btnSave">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+        });
+    </script>
+
+    <script src="../assets/js/sweetalert2@11.js"></script>
+    <script src="../functions/login.js"></script>
+</body>
+</html>
